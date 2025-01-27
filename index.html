@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarWars</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/script.js" defer></script>
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="logo">
+            <img src="img/star-wars-logo.png" alt="star-wars-logo">
+        </div>
+        <div id="subtitel">
+            <img src="img/subtitle.png" alt="subtitel">
+        </div>
+
+        <div id="buttons">
+            <div id="rules-button" onclick="active('rules')">
+                Rules
+            </div>
+
+            <div id="settings-button" onclick="active('settings')">
+                Settings
+            </div>
+
+            <div id="character-button" onclick="active('character')">
+                Jedi/Sith?
+            </div>
+        </div>
+
+        <h2 id="play" onclick="start()">PRESS START</h2>
+
+        <!--------------PopUps-------------->
+
+        <div id="rules-popup">
+            <div class="backbutton" onclick="hidepopup('rules')">
+                X
+            </div>
+            <div class="rules-content">
+                <h2>Star Wars Tic-Tac-Toe Regeln</h2>
+                
+                <p><strong>Wähle deine Seite:</strong></p>
+                <p>Das X ist auch speichern</p>
+                <p>Bevor das Spiel beginnt, musst du deine Seite wählen: <span style="color: blue;">Jedi</span> oder <span style="color: red;">Sith</span>. Jede Seite hat ihr eigenes einzigartiges Symbol, das deinen Zug im Spielfeld repräsentiert. Die Jedi sind das Licht, die Sith die Dunkelheit – wähle weise!</p>
+                
+                <p><strong>Hintergrund:</strong></p>
+                <p>Du kannst auch einen passenden Hintergrund auswählen, um die Atmosphäre deines gewählten Pfades zu verstärken. Wähle zwischen einem ruhigen Jedi-Tempel oder einem bedrohlichen Sith-Versteck.</p>
+                
+                <hr>
+                
+                <h3>Tic-Tac-Toe Spielregeln:</h3>
+                
+                <ol>
+                    <li>Das Spielfeld besteht aus einem 3x3-Raster.</li>
+                    <li>Spieler 1 und Spieler 2 machen abwechselnd einen Zug, indem sie ihr Symbol (Jedi oder Sith) in eines der Felder setzen.</li>
+                    <li>Das Ziel ist es, als Erster drei Symbole in einer horizontalen, vertikalen oder diagonalen Linie zu platzieren.</li>
+                    <li>Falls alle Felder gefüllt sind und kein Spieler drei Symbole in einer Reihe hat, endet das Spiel unentschieden.</li>
+                </ol>
+        
+                <p>Möge die Macht mit dir sein, während du deine Strategie planst!</p>
+            </div>
+        </div>
+
+        <div id="character-popup">
+            <div class="backbutton" onclick="hidepopup('character')">
+                X
+            </div>
+            <img src="img/jedi-character.jpg" id="jedi-character" onclick="chooseCharacter('jedi')">
+            <img src="img/sith-character.jpg" id="sith-character" onclick="chooseCharacter('sith')">
+        </div>
+
+        <div id="settings-popup">
+            <div class="backbutton" onclick="hidepopup('settings'), getNames()">
+                X
+            </div>
+            <div class="settings-content">
+                <h2>Star Wars Tic-Tac-Toe Einstellungen</h2>
+                
+                <div class="setting-option">
+                    <label for="background-select">Hintergrund ändern:</label>
+                    <div id="backgrounds">
+                        <img src="img/jedi-temple.png" id="temple" onclick="changeBackground('jedi-temple')">
+                        <img src="img/sith-base.png" id="sith-base" onclick="changeBackground('sith-base')">
+                        <img src="https://www.solarsystemscope.com/textures/download/2k_stars.jpg" id="space" onclick="changeBackground('space')">
+                    </div>
+                </div>
+        
+                <div class="setting-option">
+                    <label for="player1-name">Name Spieler 1:</label>
+                    <input type="text" id="player1-name" placeholder="Spieler 1">
+                </div>
+                
+                <div class="setting-option">
+                    <label for="player2-name">Name Spieler 2:</label>
+                    <input type="text" id="player2-name" placeholder="Spieler 2">
+                </div>
+        
+                <div class="setting-option">
+                    <label id="music-toggle-label">Musik:</label>
+                    <button id="music-toggle" onclick="toggleMusic()">An / Aus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="back" onclick="reload()">Reload</div>
+
+        <h1>Tic-Tac-Wars</h1>
+
+        <div class="scoreboard" style="user-select: none;">
+            <p>Spieler 1: <span id="scorePlayer1">0</span></p>
+            <p>Spieler 2: <span id="scorePlayer2">0</span></p>
+        </div>
+
+        <div class="game-board" id="gameBoard">
+            <div class="cell" data-index="0" onclick="handleClick(0)"></div>
+            <div class="cell" data-index="1" onclick="handleClick(1)"></div>
+            <div class="cell" data-index="2" onclick="handleClick(2)"></div>
+            <div class="cell" data-index="3" onclick="handleClick(3)"></div>
+            <div class="cell" data-index="4" onclick="handleClick(4)"></div>
+            <div class="cell" data-index="5" onclick="handleClick(5)"></div>
+            <div class="cell" data-index="6" onclick="handleClick(6)"></div>
+            <div class="cell" data-index="7" onclick="handleClick(7)"></div>
+            <div class="cell" data-index="8" onclick="handleClick(8)"></div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p id="winnerMessage"></p>
+            <div onclick="restartGame()">Nochmals spielen</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
